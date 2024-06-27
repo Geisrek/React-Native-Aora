@@ -7,7 +7,7 @@ import { Link } from 'expo-router'
 import { createUser } from '../../lib/appwrite'
 const SignUp = () => {
     const [form,setForm]=useState({
-        Email:'',
+        email:'',
         password:'',
         username:''
     });
@@ -32,8 +32,8 @@ const SignUp = () => {
           <FormField
           otherStyles='1'
           title='Email'
-          value={form.Email}
-          handleChangeText={(e)=>setForm({...form,Email:e})}
+          value={form.email}
+          handleChangeText={(e)=>setForm({...form,email:e})}
           keyboardType='email-address'
           />
            <FormField
