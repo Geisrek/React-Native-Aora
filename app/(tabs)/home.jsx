@@ -28,9 +28,15 @@ const Home = () => {
                         className='w-9 h-10'
                         resizeMode='contain'
                         />
+                       
                      </View>
                 </View>
                 <SearchInput/>
+                <View className='w-full flex-1 pt-5 pb-8'>
+                            <Text className='text-gray-100 text-lg font-pregular mb-3'>
+                                Latest Video
+                            </Text>
+                </View>
             </View>)
         }
         />
