@@ -4,15 +4,33 @@ import {images} from '../../constants'
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 import { Link } from 'expo-router'
+import { getCurrentUser } from '../../lib/appwrite'
+import { useGlobalContext } from '../../context/GlobalProvider'
 const SignIn = () => {
+  const {setUser,setIsLogged}=useGlobalContext()
     const [form,setForm]=useState({
         Email:'',
         password:''
     });
     const [isSubmiting, setIsSubmiting] = useState(false)
-    const Submit=()=>{
-
-    }
+    const Submit=async()=>{
+      if(!form.Email||!form.password){
+          Alert.alert('Error','Please fill in all the fields')
+      }
+      setIsSubmiting(true)
+      try{
+  
+  const result=await getCurrentUser()
+  setUser(result)
+  setIsLogged(true)
+   router.replace('/home')
+  }
+   catch(error){
+    Alert.alert('Error',error.message)
+   }finally{
+      setIsSubmiting(false)
+   }
+  }
   return (
     <SafeAreaView className="bg-primary h-full ">
       <ScrollView >
