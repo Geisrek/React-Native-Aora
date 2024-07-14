@@ -1,19 +1,25 @@
-import { View, Text, SafeAreaView, } from 'react-native'
+import { View, Text, SafeAreaView, Image} from 'react-native'
 import React, { useEffect} from 'react'
 import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import SearchInput from '../../components/SearchInput'
 
 import EmptyState from '../../components/EmptyState'
-import { searchtPosts}from '../../lib/appwrite'
+import {  getUsertPosts}from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppWrite'
 import VideoCard from '../../components/VideoCard'
-
+import {useGlobalContext} from '../../context/GlobalProvider'
+import { TouchableOpacity } from 'react-native-web'
+import { icons } from '../../constants'
+import { Avatars } from 'react-native-appwrite'
 const Profile = () => {
+  const {user,setUser,setIsLoggedIn}=useGlobalContext()
   const {query}=useLocalSearchParams()
-  const {data:posts,refetch}=useAppwrite(()=>searchtPosts(query))
+  const {data:posts}=useAppwrite(()=>getUsertPosts(user.$id))
+  const logout=()=>{
 
-useEffect(()=>{},[query])
+  }
+
 return (
   <GestureHandlerRootView>
   <SafeAreaView className='bg-primary h-full'>
@@ -24,18 +30,25 @@ return (
          <VideoCard video={item}/>
       )}
       ListHeaderComponent={()=>(
-      <View className='my-6 px-4 '>
-             
-                 
-                   <Text className='font-pmedium text-sm text-gray-100'>Search Results</Text>
-                   <Text className='text-2xl font-psemibold text-white '>{query}</Text>
-                   <View className='mt-6 mb-8'>
-                   <SearchInput initialQuery={query}
-                   />
-                   </View>
-             
-              
-          </View>)
+        <View className="w-full justify-center items-center mt-6 mb-12 px-4">
+        <TouchableOpacity
+        className='justify-end w-full mb-10'
+        onPress={logout}>
+          <Image
+          source={icons.logout}
+          className="w-6 h-6"
+          resizeMode='contain'
+          />
+        </TouchableOpacity>
+        <View className='w-16 h-16 border border-secondary rounded-lg justify-center items-center'>
+         <Image
+         source={{uri:user?.avatar}}
+         className='w-[90%] h-[90%] rounded-lg '
+         resizeMode='cover'
+         />
+        </View>
+        </View>
+      )
       }
       ListEmptyComponent={()=>(<EmptyState
       title='No video found'

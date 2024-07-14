@@ -12,7 +12,9 @@ const Search = () => {
   const {query}=useLocalSearchParams()
   const {data:posts,refetch}=useAppwrite(()=>searchtPosts(query))
 
-useEffect(()=>{},[query])
+useEffect(()=>{
+  refetch()
+},[query])
 return (
   <GestureHandlerRootView>
   <SafeAreaView className='bg-primary h-full'>
