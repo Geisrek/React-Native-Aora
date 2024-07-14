@@ -12,6 +12,7 @@ import {useGlobalContext} from '../../context/GlobalProvider'
 import { TouchableOpacity } from 'react-native-web'
 import { icons } from '../../constants'
 import { Avatars } from 'react-native-appwrite'
+import InfoBox from '../../components/InfoBox'
 const Profile = () => {
   const {user,setUser,setIsLoggedIn}=useGlobalContext()
   const {query}=useLocalSearchParams()
@@ -46,6 +47,25 @@ return (
          className='w-[90%] h-[90%] rounded-lg '
          resizeMode='cover'
          />
+         <InfoBox
+         title={user?.username}
+         containerStyles='mt-5'
+         titleStiles='text-lg'
+         />
+         <View className='mt-5 flex-row'>
+         <InfoBox
+         title={posts.length||0}
+         subtitle="Posts"
+         containerStyles='mr-10'
+         titleStiles='text-xl'
+         />
+           <InfoBox
+         title='1.5k'
+         subtitle='Followers'
+       
+         titleStiles='text-lg'
+         />
+         </View>
         </View>
         </View>
       )
