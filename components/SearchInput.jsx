@@ -1,9 +1,11 @@
-import { View, Text, TouchableOpacity ,Image} from 'react-native'
+import { View, Text, TouchableOpacity ,Image, Alert} from 'react-native'
 import React, { useState } from 'react'
 import { TextInput ,GestureHandlerRootView } from 'react-native-gesture-handler'
 import {icons} from '../constants'
-const SearchInput = ({title,value,keyboardType,placeholder,handleChangeText,otherStyles,...props}) => {
-    const [showPassword,setShowPassword]=useState(false)
+import {router, usePathname} from 'expo-router'
+const SearchInput = () => {
+   const pathname=usePathname()
+   const [query, setQuery]=useState('')
   return (
     <GestureHandlerRootView>
    
@@ -12,13 +14,20 @@ const SearchInput = ({title,value,keyboardType,placeholder,handleChangeText,othe
        
         <TextInput
         className='text-base mt-0.5 text-white flex-1 font-pregular'
-        value={value}
+        value={query}
         placeholder='Surch for a video topic'
-        onChangeText={handleChangeText}
-        placeholderTextColor='#7b7b8b'
-        secureTextEntry={title=='Password'&&!showPassword}
+        onChangeText={(e)=>setQuery(e)}
+        placeholderTextColor='#CDCDE0'
+        
         />
-      <TouchableOpacity>
+      <TouchableOpacity
+      onPress={()=>{
+        if(!query){
+          return Alert.alert('Missing query','Please input something to search result across database')
+        }
+        if(pathname.startsWith('/search')) router.setParams({query})
+        else router.push(`/search/${query}`)
+      }}>
         <Image
         source={icons.search}
         className='x-5 h-5'
