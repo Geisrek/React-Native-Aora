@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import { TextInput ,GestureHandlerRootView } from 'react-native-gesture-handler'
 import {icons} from '../constants'
 import {router, usePathname} from 'expo-router'
-const SearchInput = () => {
+const SearchInput = ({initialQuery}) => {
    const pathname=usePathname()
-   const [query, setQuery]=useState('')
+   const [query, setQuery]=useState(initialQuery||'')
   return (
     <GestureHandlerRootView>
    
