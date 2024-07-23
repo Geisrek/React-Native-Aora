@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image, Alert} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import React, { useState } from 'react'
 import FormField from '../../components/FormField'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler'
 import { ResizeMode, Video } from 'expo-av'
 import { icons } from '../../constants'
 import CustomButton from '../../components/CustomButton'
@@ -63,6 +63,7 @@ Alert.alert('Error',error.message)
  }
   }
   return (
+    <GestureHandlerRootView>
     <SafeAreaView className='bg-primary h-full'>
       <ScrollView className='px-4 my-6'>
       <Text className='text-2xl text-white font-psemibold'>
@@ -140,6 +141,7 @@ Alert.alert('Error',error.message)
       isLoading={uploading}/>
       </ScrollView>
     </SafeAreaView>
+    </GestureHandlerRootView>
   )
 }
 

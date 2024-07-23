@@ -53,7 +53,22 @@ const TabsLayouts = () => {
             ),
           }}
         />
-       
+        <Tabs.Screen
+        name='bookmark'
+        options={{
+          tabBarLabel:'',
+          title:'Bookmark',
+          headerShown:false,
+          tabBarIcon:({color,focused})=>(
+           <TabIcon
+           name='bookmark'
+           icon={icons.bookmark}
+           color={color}
+           focused={focused}/>)
+
+          
+        }
+        }/>
           <Tabs.Screen
         name='create'
         options={{

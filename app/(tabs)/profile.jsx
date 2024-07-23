@@ -35,7 +35,7 @@ return (
       )}
       ListHeaderComponent={()=>(
         <View className="w-full justify-center items-center mt-6 mb-12 px-4">
-        <TouchableOpacity
+      <TouchableOpacity
         className='justify-end w-full mb-10'
         onPress={logout}>
           <Image
@@ -84,3 +84,38 @@ return (
 }
 
 export default Profile
+/** <TouchableOpacity
+        className='justify-end w-full mb-10'
+        onPress={logout}>
+          <Image
+          source={icons.logout}
+          className="w-6 h-6"
+          resizeMode='contain'
+          />
+        </TouchableOpacity>
+        <View className='w-16 h-16 border border-secondary rounded-lg justify-center items-center'>
+         <Image
+         source={{uri:user?.avatar}}
+         className='w-[90%] h-[90%] rounded-lg '
+         resizeMode='cover'
+         />
+         <InfoBox
+         title={user?.username}
+         containerStyles='mt-5'
+         titleStiles='text-lg'
+         />
+         <View className='mt-5 flex-row'>
+         <InfoBox
+         title={posts.length||0}
+         subtitle="Posts"
+         containerStyles='mr-10'
+         titleStiles='text-xl'
+         />
+           <InfoBox
+         title='1.5k'
+         subtitle='Followers'
+       
+         titleStiles='text-lg'
+         />
+         </View>
+        </View> */
